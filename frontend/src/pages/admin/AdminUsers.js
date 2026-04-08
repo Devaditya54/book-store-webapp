@@ -10,7 +10,7 @@ export default function AdminUsers() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    axios.get('/api/admin/users')
+    axios.get('https://book-store-webapp-kappa.vercel.app/api/admin/users')
       .then(r => setUsers(r.data))
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -20,7 +20,7 @@ export default function AdminUsers() {
     setSelected(user);
     setLoadingRentals(true);
     try {
-      const { data } = await axios.get(`/api/admin/rentals/user/${user._id}`);
+      const { data } = await axios.get(`https://book-store-webapp-kappa.vercel.app/api/admin/rentals/user/${user._id}`);
       setUserRentals(data);
     } catch { setUserRentals([]); }
     finally { setLoadingRentals(false); }
