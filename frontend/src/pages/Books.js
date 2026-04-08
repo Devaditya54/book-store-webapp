@@ -22,7 +22,7 @@ export default function Books() {
     const params = { page, limit: 12 };
     if (genre && genre !== 'All') params.genre = genre;
     if (search) params.search = search;
-    axios.get('/api/books', { params })
+    axios.get('https://book-store-webapp-kappa.vercel.app/api/books', { params })
       .then(r => { 
   console.log("API:", r.data); // DEBUG
 
