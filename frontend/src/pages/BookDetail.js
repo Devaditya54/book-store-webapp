@@ -14,7 +14,7 @@ export default function BookDetail() {
   const [days, setDays] = useState(14);
 
   useEffect(() => {
-    axios.get(`/api/books/${id}`)
+    axios.get(`https://book-store-webapp-kappa.vercel.app/api/books/${id}`)
       .then(r => setBook(r.data))
       .catch(() => toast.error('Book not found'))
       .finally(() => setLoading(false));
@@ -24,7 +24,7 @@ export default function BookDetail() {
     if (!user) { navigate('/login'); return; }
     setRenting(true);
     try {
-      await axios.post('/api/rentals', { bookId: id, days });
+      await axios.post('https://book-store-webapp-kappa.vercel.app/api/rentals', { bookId: id, days });
       toast.success('Book rented! Check your shelf 📚');
       setBook(prev => ({ ...prev, availableCopies: prev.availableCopies - 1 }));
     } catch (err) {
