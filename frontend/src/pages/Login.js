@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data } = await axios.post('/api/auth/login', form);
+      const { data } = await axios.post('https://book-store-webapp-kappa.vercel.app/api/auth/login', form);
       login(data);
       toast.success(`Welcome back, ${data.name}!`);
       navigate(data.role === 'admin' ? '/admin' : '/books');
