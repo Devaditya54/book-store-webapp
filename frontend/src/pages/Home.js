@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     axios.get('/api/books?limit=8')
-      .then(r => setFeaturedBooks(r.data.books))
+      .then(r => setFeaturedBooks(r?.data?.books || []))
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
