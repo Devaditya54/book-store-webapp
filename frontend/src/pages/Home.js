@@ -10,7 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/books?limit=8')
+    axios.get('https://book-store-webapp-kappa.vercel.app/api/books?limit=8')
       .then(r => setFeaturedBooks(r?.data?.books || []))
       .catch(console.error)
       .finally(() => setLoading(false));
