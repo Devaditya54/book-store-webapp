@@ -7,7 +7,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/admin/stats')
+    axios.get('https://book-store-webapp-kappa.vercel.app/api/admin/stats')
       .then(r => setStats(r.data))
       .catch(console.error)
       .finally(() => setLoading(false));
