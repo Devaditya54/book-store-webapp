@@ -16,7 +16,7 @@ export default function Register() {
     if (form.password.length < 6) { toast.error('Password must be at least 6 characters'); return; }
     setLoading(true);
     try {
-      const { data } = await axios.post('/api/auth/register', {
+      const { data } = await axios.post('https://book-store-webapp-kappa.vercel.app/api/auth/register', {
         name: form.name, email: form.email, password: form.password
       });
       login(data);
