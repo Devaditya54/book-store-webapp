@@ -8,7 +8,7 @@ export default function AdminRentals() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    axios.get('/api/admin/rentals')
+    axios.get('https://book-store-webapp-kappa.vercel.app/api/admin/rentals')
       .then(r => setRentals(r.data))
       .catch(console.error)
       .finally(() => setLoading(false));
