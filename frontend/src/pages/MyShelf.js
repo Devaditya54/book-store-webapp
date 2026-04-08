@@ -12,7 +12,7 @@ export default function MyShelf() {
   const [returning, setReturning] = useState(null);
 
   useEffect(() => {
-    axios.get('/api/rentals/my')
+    axios.get('https://book-store-webapp-kappa.vercel.app/api/rentals/my')
       .then(r => setRentals(r.data))
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -21,7 +21,7 @@ export default function MyShelf() {
   const handleReturn = async (rentalId) => {
     setReturning(rentalId);
     try {
-      await axios.put(`/api/rentals/${rentalId}/return`);
+      await axios.put(`https://book-store-webapp-kappa.vercel.app/api/rentals/${rentalId}/return`);
       setRentals(prev => prev.map(r => r._id === rentalId ? { ...r, status: 'returned', returnedAt: new Date() } : r));
       toast.success('Book returned successfully!');
     } catch (err) {
