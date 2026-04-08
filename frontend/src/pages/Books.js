@@ -23,7 +23,13 @@ export default function Books() {
     if (genre && genre !== 'All') params.genre = genre;
     if (search) params.search = search;
     axios.get('/api/books', { params })
-      .then(r => { setBooks(r.data.books); setTotal(r.data.total); setPages(r.data.pages); })
+      .then(r => { 
+  console.log("API:", r.data); // DEBUG
+
+  setBooks(r?.data?.books || []);
+  setTotal(r?.data?.total || 0);
+  setPages(r?.data?.pages || 1);
+})
       .catch(console.error)
       .finally(() => setLoading(false));
   }, [genre, search, page]);
