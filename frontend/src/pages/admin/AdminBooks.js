@@ -21,7 +21,7 @@ export default function AdminBooks() {
 
   const fetchBooks = () => {
     setLoading(true);
-    axios.get('/api/books?limit=100')
+    axios.get('https://book-store-webapp-kappa.vercel.app/api/books?limit=100')
       .then(r => setBooks(r.data.books))
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -43,11 +43,11 @@ export default function AdminBooks() {
     try {
       const payload = { ...form, rentPrice: parseFloat(form.rentPrice), totalCopies: parseInt(form.totalCopies), availableCopies: parseInt(form.availableCopies) };
       if (editId) {
-        const { data } = await axios.put(`/api/books/${editId}`, payload);
+        const { data } = await axios.put(`https://book-store-webapp-kappa.vercel.app/api/books/${editId}`, payload);
         setBooks(prev => prev.map(b => b._id === editId ? data : b));
         toast.success('Book updated!');
       } else {
-        const { data } = await axios.post('/api/books', payload);
+        const { data } = await axios.post('https://book-store-webapp-kappa.vercel.app/api/books', payload);
         setBooks(prev => [data, ...prev]);
         toast.success('Book added!');
       }
@@ -62,7 +62,7 @@ export default function AdminBooks() {
   const handleDelete = async (id) => {
     if (!window.confirm('Remove this book?')) return;
     try {
-      await axios.delete(`/api/books/${id}`);
+      await axios.delete(`https://book-store-webapp-kappa.vercel.app/api/books/${id}`);
       setBooks(prev => prev.filter(b => b._id !== id));
       toast.success('Book removed');
     } catch { toast.error('Delete failed'); }
